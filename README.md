@@ -1,6 +1,6 @@
 # Howdy Neighbor!!!, I'm Andrywin Maquinto <img src="https://user-images.githubusercontent.com/43292234/179925738-4df11b89-1924-4d3d-82b5-3a197ac4f031.gif" width="50" />
 
-<p>I'm a developer, editor and a gaming enthusiast residing here at the Philippines. I love to create things, update exisiting and remove unnecessary obstacle concerning people desire. Any programming languages will do, I just need to study it for a while ;)</p>
+<p>I'm a developer, editor and a gaming enthusiast residing here at the Philippines. I love to create things, update exisiting and remove unnecessary obstacle concerning people desire. Any programming languages will do, I just need to study it for a while</p>
 
 
 [![GitHub](https://img.shields.io/badge/Github-exclusiveandy-lightgrey)](https://github.com/exclusiveandy)
@@ -24,7 +24,7 @@
 
 ##
 
-<p>If you need a game developer that you want to teach HAHA. Beep me up and guide me :)</p>
+<p>If you need a game developer that you want to teach. Beep me up and guide me, I'm finding my sensei / master</p>
 
 <br>
 
