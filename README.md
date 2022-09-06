@@ -31,6 +31,6 @@
 <p><b><i>Note: This is my main github account.</i><b></p>
 <p><i>This is my second account: </i></p>
   
-[![GitHub](https://img.shields.io/badge/Github-exclusiveandy-lightgrey)](https://github.com/andytoolkt)
+[![GitHub](https://img.shields.io/badge/Github-andytoolkt-lightgrey)](https://github.com/andytoolkt)
 
 
