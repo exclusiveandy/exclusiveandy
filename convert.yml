@@ -1,0 +1,66 @@
+name: Convert Drive files
+
+on:
+  workflow_dispatch:
+    inputs:
+      source_folder_id:
+        description: "Drive folder ID to read files from"
+        required: true
+        type: string
+      target_folder_id:
+        description: "Drive folder ID to save converted files into"
+        required: true
+        type: string
+      conversion:
+        description: "Conversion to run"
+        required: true
+        type: choice
+        options:
+          - png-to-jpg
+          - jpg-to-png
+          - webp-to-jpg
+          - docx-to-pdf
+          - pptx-to-pdf
+          - xlsx-to-pdf
+          - csv-to-xlsx
+          - xlsx-to-csv
+          - mp4-to-mp3
+          - wav-to-mp3
+          - mp3-to-wav
+          - mov-to-mp4
+
+jobs:
+  convert:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install Python packages
+        run: pip install -r requirements.txt
+
+      - name: Install ffmpeg / LibreOffice (only if needed)
+        env:
+          MODE: ${{ inputs.conversion }}
+        run: |
+          case "$MODE" in
+            docx-to-pdf|pptx-to-pdf|xlsx-to-pdf)
+              sudo apt-get update && sudo apt-get install -y --no-install-recommends libreoffice-core libreoffice-writer libreoffice-impress libreoffice-calc ;;
+            mp4-to-mp3|wav-to-mp3|mp3-to-wav|mov-to-mp4)
+              sudo apt-get update && sudo apt-get install -y --no-install-recommends ffmpeg ;;
+          esac
+
+      - name: Run conversion
+        env:
+          GDRIVE_CLIENT_ID: ${{ secrets.GDRIVE_CLIENT_ID }}
+          GDRIVE_CLIENT_SECRET: ${{ secrets.GDRIVE_CLIENT_SECRET }}
+          GDRIVE_REFRESH_TOKEN: ${{ secrets.GDRIVE_REFRESH_TOKEN }}
+          SOURCE: ${{ inputs.source_folder_id }}
+          TARGET: ${{ inputs.target_folder_id }}
+          MODE: ${{ inputs.conversion }}
+        run: python convert.py --source "$SOURCE" --target "$TARGET" --mode "$MODE"
